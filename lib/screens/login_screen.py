@@ -1,4 +1,4 @@
-from tkinter import Tk, StringVar, Entry, Button
+from tkinter import Tk, StringVar, Label, Entry, Button
 
 from .base_screen import BaseScreen
 
@@ -25,16 +25,18 @@ class LoginScreen(BaseScreen):
         self.__screen.geometry(self.__screenGeometry)
 
         self.passwordVar = StringVar(self.__screen)
+        passwordLabel = Label(self.__screen, text = 'Keepass password:')
         passwordEntry = Entry(self.__screen, show="*", textvariable=self.passwordVar, width=40)
         passwordEntry.bind('<Return>', self.__onLogin)
 
         loginButton = Button(self.__screen, text="Login",command=self.__onLogin)
         configButton = Button(self.__screen, text="Edit config",command=self.__onConfig)
 
-        passwordEntry.grid(row=0, columnspan=2, sticky='we')
+        passwordLabel.grid(row=0, columnspan=2, sticky='w')
+        passwordEntry.grid(row=1, columnspan=2, sticky='we')
 
-        loginButton.grid(row=1, column=0, sticky='we')
-        configButton.grid(row=1, column=1, sticky='we')
+        loginButton.grid(row=2, column=0, sticky='we')
+        configButton.grid(row=2, column=1, sticky='we')
 
         self.__screen.mainloop()
     
